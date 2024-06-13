@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation entre les vidéos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .video {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .video h2 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .video p {
+            margin-bottom: 10px;
+        }
+
+        .video iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .episodeButton {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .episodeButton:hover {
+            background-color: #0056b3;
+        }
+
+        /* Bouton retour stylisé */
+        .returnButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+            display: none; /* Initialement caché */
+        }
+
+        .returnButton:hover {
+            background-color: #0056b3;
+        }
+
+        .returnButton.show {
+            display: block; /* Afficher lorsque la page est scrollée vers le haut */
+        }
+/* Bouton Flux */
+        .fluxButton {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .fluxButton:hover {
+            background-color: #218838;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenue sur notre site !</h1>         <!-- Bouton Flux -->
+
+
+        <button class="fluxButton" onclick="redirectToFlux();" title="Voir le flux">Flux</button>
+
+<script>
+    // Fonction pour rediriger vers le flux
+    function redirectToFlux() {
+        window.location.href = 'https://lucious-lion04.github.io/flux/'; // Remplacez cette URL par l'URL de votre flux
+    }
+</script>
+    </header>
+
+    <div class="main-content">
+        <div class="video video-godzilla">
+            <div class="video-frame">
+                <!-- URL de la vidéo de Godzilla -->
+                <iframe src="https://mega.nz/embed/5vckRYyK#DKEEA996g_FBkpktM-Ai4YpfFcyqFHPPuQC-5sBveFc" allowfullscreen></iframe>
+            </div>
+            <h2>Godzilla</h2>
+            <button class="episodeButton prevEpisodeButton">Épisode précédent</button>
+            <button class="episodeButton nextEpisodeButton">Épisode suivant</button>
+        </div>
+
+        <div class="video video-kirikou">
+            <div class="video-frame"></div>
+            <h2>Kirikou</h2>
+            <button class="episodeButton prevEpisodeButton">Épisode précédent</button>
+            <button class="episodeButton nextEpisodeButton">Épisode suivant</button>
+        </div>
+
+        <div class="video video-nouvelle-section">
+            <div class="video-frame"></div>
+            <h2>Nouvelle Section</h2>
+            <button class="episodeButton prevEpisodeButton">Épisode précédent</button>
+            <button class="episodeButton nextEpisodeButton">Épisode suivant</button>
+        </div>
+    </div>
+
+    <!-- Bouton de retour en haut de page -->
+    <button class="returnButton" onclick="scrollToTop();" title="Retour en haut de page">&#9650;</button>
+
+
+    <script>
+        const videos = {
+            "video-godzilla": [
+                "https://mega.nz/embed/CRVCjTjC#EkxvXRV0l4wHUPiUfD43wp5einV9dEaOvZGmXYIB6uo",
+                "https://mega.nz/embed/UjMznIYB#T1zlXpV_GpHS7ryEyEicn9hGHXp8YHgpA6G3cfJbbyY",
+                "https://mega.nz/embed/NncAHSDT#4d6GNuwvcaM94Nm2BB1FitQg3S_zOkIHptIImptLXMY"
+            ],
+            "video-kirikou": [
+                "https://mega.nz/embed/UjMznIYB#T1zlXpV_GpHS7ryEyEicn9hGHXp8YHgpA6G3cfJbbyY",
+                "https://mega.nz/embed/UjMznIYB#T1zlXpV_GpHS7ryEyEicn9hGHXp8YHgpA6G3cfJbbyY",
+                "https://mega.nz/embed/aU8XxaTT#WAtEXi_odyk89h_IuJEWxVzpKa0MQHvh0OG1EtEQYRA"
+            ],
+            "video-nouvelle-section": [
+                "https://mega.nz/embed/UjMznIYB#T1zlXpV_GpHS7ryEyEicn9hGHXp8YHgpA6G3cfJbbyY",
+                "https://mega.nz/embed/NncAHSDT#4d6GNuwvcaM94Nm2BB1FitQg3S_zOkIHptIImptLXMY",
+                "https://mega.nz/embed/CRVCjTjC#EkxvXRV0l4wHUPiUfD43wp5einV9dEaOvZGmXYIB6uo"
+            ]
+        };
+
+        function loadVideo(section, index) {
+            const videoFrame = document.querySelector(`.${section} .video-frame`);
+            const videosInSection = videos[section];
+            videoFrame.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                videoFrame.innerHTML = `
+                    <iframe src="${videosInSection[index]}" allowfullscreen></iframe>
+                `;
+                videoFrame.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Écouteur pour le bouton de retour en haut de page
+        window.addEventListener('scroll', () => {
+            const returnButton = document.querySelector('.returnButton');
+            if (window.scrollY > 100) {
+                returnButton.classList.add('show');
+            } else {
+                returnButton.classList.remove('show');
+            }
+        });
+
+        // Fonction pour remonter en haut de page
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Fonction pour rediriger vers le flux
+        function redirectToFlux() {
+            // Remplacez l'URL ci-dessous par l'URL de votre flux
+            window.location.href = 'https://example.com/flux';
+        }
+
+        // Pour chaque section de vidéo
+        document.querySelectorAll('.video').forEach((video, index) => {
+            const section = video.classList[1]; // Obtenez la classe spécifique de la section
+            const prevButton = video.querySelector('.prevEpisodeButton');
+            const nextButton = video.querySelector('.nextEpisodeButton');
+
+            // Ajoutez les écouteurs d'événements pour les boutons de navigation
+            prevButton.addEventListener('click', () => {
+                const currentVideoIndex = videos[section].indexOf(video.querySelector('iframe').getAttribute('src'));
+                const newIndex = (currentVideoIndex - 1 + videos[section].length) % videos[section].length;
+                loadVideo(section, newIndex);
+            });
+
+            nextButton.addEventListener('click', () => {
+                const currentVideoIndex = videos[section].indexOf(video.querySelector('iframe').getAttribute('src'));
+                const newIndex = (currentVideoIndex + 1) % videos[section].length;
+                loadVideo(section, newIndex);
+            });
+
+            // Charger la première vidéo au chargement de la page
+            loadVideo(section, 0);
+        });
+    </script>
+</body>
+  </html>
